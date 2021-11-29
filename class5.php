@@ -48,92 +48,6 @@ while($row = $result1->fetch_assoc()) {
     }
 }
 
-// #GETTING SCHEDULE START TIME
-// $scheduleStart = "SELECT * FROM SCHEDULE WHERE ID='$schedule_id'";
-// $result2 = $conn->query($scheduleStart);
-// while($row = $result2->fetch_assoc()) {
-//       $schedule_start = $row['start_time'];
-//       echo $schedule_start;
-//       echo "<br>";
-//       echo "this is schedule start time ^";
-// }
-
-// #GETTING SYSTEM TIME
-// date_default_timezone_set("Asia/Qatar");
-// $systemTime = new DateTime('NOW'); 
-// echo "THIS IS THE TIMMMEE";
-// echo "<br>";
-// echo $systemTime;
-
-// #TESTING WITH PHP TIME AS IF ITS JS TIME
-// echo "<br>";
-// $my_time = '7:00:00';
-// $new_time= strtotime($my_time);
-// echo "this is 'current' time";
-// echo "<br>";
-// $currTime = date('h:i:s',$new_time);
-// echo $currTime;
-
-// echo "<br>";
-
-
-// $var = "<script>document.writeln(timeOnly);</script>";
-// echo "<br>";
-// echo "this is it";
-// echo "<br>";
-// echo $var;
-// echo "<br>";
-// echo "this is when the schedule starts";
-// echo "<br>";
-// echo $schedule_start;
-// echo "<br>";
-// echo "this the time difference";
-// echo "<br>";
-// $timme= $currTime-$schedule_start;
-// $theTime = $timme*60;
-// echo $theTime;
-// echo "<br>";
-
-
-// #time diff between php and js
-// echo "Var value is".$var;
-// echo"<br>";
-// echo "schedule start time is".$schedule_start;
-// echo"<br>";
-// $timeDiff = $var - $schedule_start;
-// echo "This is the difference of var and start time";
-// echo "<br>";
-// echo $timeDiff;
-
-// #CLASS DURATIONS AND WHICH CLASS WE'RE AT
-// $x = 0;
-// $noClass = 0;
-//       for ($i = 1; $i < 11; $i++){
-//         //   while($x<$theTime){
-//         #getting the durations
-//               $sql_get_duration = "SELECT class_duration$i FROM SCHEDULE WHERE ID = $schedule_id";
-//           $result_get_duration = $conn->query($sql_get_duration);
-//           #if its null set to 0
-//         if ($result_get_duration->num_rows > 0) {
-//              while($row = $result_get_duration->fetch_assoc()) {
-//                  if ($row['class_duration'.$i] == null){
-//                      $row['class_duration'.$i] = 0;
-//                  }
-//                  #here start adding
-//                  while($x<$theTime){
-//                   $x= $x + $row['class_duration'.$i];
-//                   $noClass= $noClass+1;
-//                  }
-
-//                  echo $noClass." how many classes";
-//                  echo "<br>";
-//                  echo $x." how much time spent";
-//              }
-//         }
-
-//         //   echo "helllooooo";
-//         //   echo  $result_get_duration;
-//           }
         if ($result_get_id->num_rows > 0) {
              while($row = $result_get_id->fetch_assoc()) {
                  array_push($image_id, $row['class'.$i]);
@@ -176,7 +90,7 @@ $image_id = array();
         if (count($image_id)%3 == 0) {$divide = 3;}
         if (count($image_id)%5 == 0) {$divide = 5;}
         if (count($image_id)%2 == 0) {$divide = 4;}
-          for ($i = 0; $i < count($image_id); $i++){
+          for ($i = 4; $i < count($image_id); $i++){
               $current = $image_id[$i];
               $sql_get_image = "SELECT * FROM IMAGES WHERE ID = $current";
               $result_get_image = $conn->query($sql_get_image);
@@ -190,8 +104,9 @@ $image_id = array();
                   echo "<td>
                   <div class=container mt-3>
                     <div class=card style=width:250px>
+                    <h1> Next class </h1>
                         <img class=card-img-top id=theImage src=".$img." alt=Card image style=width:100%;height:200px>
-                        <input type='text' name='done'>
+                        <input type='text' name='srfid'>
                          <button type='submit' onClick='myFunction()'>Done with this class</button>
                             <div class=card-body><h4 class=card-title>".$text."</h4>
                             </div>
@@ -201,8 +116,9 @@ $image_id = array();
               echo "<tr>
                         <div class=container mt-3> 
                             <div class=card style=width:250px>
+                                          <h1>Next class </h1>
                                  <img class=card-img-top id=theImage src=".$img." alt=Card image style=width:100%;height:200px>
-                                 <form action='nextClass.php' method='post' >
+                                 <form action='class6.php' method='post' >
                         <input type='text' name='srfid' autofocus>
                          <button type='submit' onClick='myFunction()'>Done with this class</button>
                          </form>
@@ -223,5 +139,3 @@ $image_id = array();
 
       </body>
 </html>
-
-?>

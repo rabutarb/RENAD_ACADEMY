@@ -176,7 +176,7 @@ $image_id = array();
         if (count($image_id)%3 == 0) {$divide = 3;}
         if (count($image_id)%5 == 0) {$divide = 5;}
         if (count($image_id)%2 == 0) {$divide = 4;}
-          for ($i = 0; $i < count($image_id); $i++){
+          for ($i = 1; $i < count($image_id); $i++){
               $current = $image_id[$i];
               $sql_get_image = "SELECT * FROM IMAGES WHERE ID = $current";
               $result_get_image = $conn->query($sql_get_image);
@@ -190,6 +190,7 @@ $image_id = array();
                   echo "<td>
                   <div class=container mt-3>
                     <div class=card style=width:250px>
+                    <h1> Next class </h1>
                         <img class=card-img-top id=theImage src=".$img." alt=Card image style=width:100%;height:200px>
                         <input type='text' name='done'>
                          <button type='submit' onClick='myFunction()'>Done with this class</button>
@@ -201,8 +202,9 @@ $image_id = array();
               echo "<tr>
                         <div class=container mt-3> 
                             <div class=card style=width:250px>
+                                          <h1>Next class </h1>
                                  <img class=card-img-top id=theImage src=".$img." alt=Card image style=width:100%;height:200px>
-                                 <form action='nextClass.php' method='post' >
+                                 <form action='class3.php' method='post' >
                         <input type='text' name='srfid' autofocus>
                          <button type='submit' onClick='myFunction()'>Done with this class</button>
                          </form>

@@ -84,9 +84,13 @@ if (!isset($_SESSION['username1'])){
         }
 
       $sql = "SELECT Image_id from TEACHER_CLASS_IMAGES WHERE TeacherUsername = '$_SESSION[username1]'";
-      
+      if (!isset($_SESSION['last_id'])){
+          $id = $_GET['id'];
+      } else {
+          $id = $_SESSION['last_id'];
+      }
       $image_id = array();
-      $sql_show_text = "SELECT show_text FROM SCHEDULE WHERE ID = $_GET[id]";
+      $sql_show_text = "SELECT show_text FROM SCHEDULE WHERE ID = $id";
       $result_show_text = $conn->query($sql_show_text);
       $show = 'yes';
       if ($result_show_text->num_rows > 0) {

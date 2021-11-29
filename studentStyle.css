@@ -1,0 +1,8 @@
+
+#theImage {
+  opacity: 1;
+  transition: opacity 0.3 ease-in-out;
+}
+#theImage.fade {
+  opacity:0.2;
+}

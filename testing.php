@@ -1,77 +1,63 @@
+
 <html>
     <head>
 
     </head>
     <body>
 <?php
+//$class_duration1 = 15;
+//$class_duration2 = 40;
+//$class_duration3 = 50;
+
+$class_durations= array(15,40,50);
+
 date_default_timezone_set("Asia/Qatar");
 $systemTime = date("h:i:00");
-echo $systemTime;
-echo "<br>";
-$scheduleTime = Date('04:00:00');
-echo $scheduleTime;
+// $systemTime = new DateTime('07:20:00'); 
+// echo "System time is: "; 
+// echo $systemTime;
+// echo "<br>";;
+
+// $scheduleTime = Date('07:00:00');
+// echo "Schedule start time is ". $scheduleTime ;
+// echo "<br>";
+
 $timeDiff = $systemTime - $scheduleTime;
-echo "<br>";
 echo $timeDiff;
-echo "<br>";
-echo date('h:i:00',strtotime($systemTime));
-echo "<br>";
-echo date('h:i:00',strtotime($scheduleTime));
-echo "<br>";
-$class_duration1 = 20;
-$class_duration2 = 40;
-$class_duration3 = 50;
-#testing adding for schedule time
-$scheduleTime = date('H:i:00', strtotime('+'. $class_duration1.'minutes', strtotime($scheduleTime)));
-echo $scheduleTime."this is it";
-echo "<br>";
+echo "<br>";;
 
-#testing adding for system time
-$systemTime = date('H:i:00', strtotime('+'. $class_duration1.'minutes', strtotime($systemTime)));
-echo $systemTime."this is it";
+echo "Minutes difference is " .  $timeDiff->i . " and hours difference is " . $timeDiff->h ;
+echo "<br>";;
 
-#testing bigger and smaller times
-// if($scheduleTime>$systemTime){
-//     echo "<br>";
-//     echo "true";
-//         echo "<br>";
+foreach ($class_durations as $duration)
+{
+echo "first duration is " . $duration;
+echo "<br>";;
+echo "schedule starting time is " . $scheduleTime->format('H:i');
+echo "<br>";;
+$scheduleTime = $scheduleTime -> add(new DateInterval('PT' . $duration . 'M'));
+echo "schedule starting time after adding duration is " . $scheduleTime->format('H:i');
+echo "<br>";;
 
-// }else{
-//           echo "<br>";
-//     echo "This class is over";
-//           echo "<br>";
-// }
+echo "Decision:";
+if ($systemTime > $scheduleTime)
+{
+echo "System time: {$systemTime->format('H:i:00')} is greater that schedule time {$scheduleTime->format('H:i')} ; cross that lecture";
+}
+else
+{
+echo "System time: {$systemTime->format('H:i:00')} is less that schedule time {$scheduleTime->format('H:i')} ; I guess it is the current lecture";
 
-$system = Date('06:00:00');
-#testing the loop of which class we are at 
-$durations = array($class_duration1,$class_duration2,$class_duration3);
-#total of durations
-$n = 0;
-#classes to skip
-$c = 0;
-for ($col = 0; $col < 3; $col++) {
-    $n = $n + $durations[$col];
-    $sTime = date('H:i:00', strtotime('+'. $n.'minutes', strtotime($scheduleTime)));
-    if ($sTime>$systemTime){
-        echo $col;
-    }
-//     if($scheduleTime>$systemTime){
-//     echo "<br>";
-//     echo "true";
-//         echo "<br>";
 
-// }else{
-//           echo "<br>";
-//     echo "This class is over";
-//           echo "<br>";
-// }
-    echo $c;
-    echo "<br>";
-  }
-  
+}
+echo "<br>";;
+}
+
+
+
 
 ?>
 
+
       </body>
 </html>
-

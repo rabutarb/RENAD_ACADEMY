@@ -100,7 +100,7 @@ $_SESSION['students_rfid'] = $stuent_rfid;
   </div>
   <div class="form-group">
       <br>
-      <input type="checkbox" name="show_text" name="show_text" value="Show Text required>
+      <input type="checkbox" name="show_text" name="show_text" value="Show Text>
       <label for="show_text">Show text</label><br>
       <br>
   </div>
